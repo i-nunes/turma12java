@@ -120,7 +120,7 @@ programa
 		vetor na ordem inversa. Caso, o código for diferente de 1 e 2, escreva uma mensagem informando que o código inválido.
 		*/
 
-		inteiro vetor[5], codigo
+		inteiro vetor[], codigo
 
 		para (inteiro i = 0; i < 5; i++) {
 			vetor[i] = Util.sorteia(1, 10)
@@ -215,7 +215,7 @@ programa
  * Esta seção do arquivo guarda informações do Portugol Studio.
  * Você pode apagá-la se estiver utilizando outro editor.
  * 
- * @POSICAO-CURSOR = 4206; 
+ * @POSICAO-CURSOR = 115; 
  * @DOBRAMENTO-CODIGO = [10, 44, 74, 102, 148];
  * @PONTOS-DE-PARADA = ;
  * @SIMBOLOS-INSPECIONADOS = ;
