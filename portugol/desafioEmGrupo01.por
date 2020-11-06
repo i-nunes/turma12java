@@ -2,6 +2,8 @@ programa{
 	inclua biblioteca Util
 	inclua biblioteca Tipos
 	inclua biblioteca Texto
+
+	// Grupo 2: Iuri, Isac, Joaquim e Mariana
 	
 	funcao inicio()
 	{
@@ -68,7 +70,7 @@ programa{
 			"vitoriagcf@hotmail.com		",
 			"william.xavier07@hotmail.com "
 		}
-		cadeia nota[29]
+		inteiro nota[29]
 		cadeia escolhas
 		logico masculino [29] = {
 			falso, 
@@ -102,47 +104,41 @@ programa{
 			verdadeiro
 		}
 		logico continua = verdadeiro
-		inteiro aleatori
-		cadeia entrega[2] = {
-			"Sim", 
-			"Não"
-		}
-		// Matriz usada para guardar, em um único lugar, todas as informações que serão impressas do aluno
-		cadeia infos[29][4] 
-
+		cadeia entregou = "Não"
+	
 		// Criação do vetor aleatório de notas
 		para (inteiro i = 0; i < 29; i++) {
-			// Atribuição de cada nota, pegando um número inteiro (sorteado entre 1 à 10) e transformando em uma cadeia
-			nota[i] = Tipos.inteiro_para_cadeia(Util.sorteia(1, 10), 10)
+			// Atribuição da nota (iniciando em 0) e transformando o valor em cadeia
+			nota[i] = 0
 		}
 		escreva("CODIGO\t\tNOME\t\t\t\tEMAIL\t\t\t\t\tENTREGOU\tNOTA")
 
 		// Loop para escrever a lista e salvar as informações de cada aluno na matriz {infos}
 		para (inteiro i = 0; i < 29; i++) {
-			// Sorteio entre 0 e 1 para determinar o valor da {entrega} ("Sim" ou "Não")
-			aleatori = Util.sorteia(0, 1)
-			// Caso o valor de {entrega} seja "Não", zerar a nota do aluno
-			se (entrega[aleatori] == "Não") {
-				nota[i] = "0"
-			}
-			// Atribuição das informações do aluno à matriz
-			infos[i][0] = nomes[i]
-			infos[i][1] = email[i]
-			infos[i][2] = entrega[aleatori]
-			infos[i][3] = nota[i]
 			
-			escreva("\nG1 - " + (i + 1) + "\t\t" + infos[i][0] + "\t\t" + infos[i][1] + "\t\t" + infos[i][2] + "\t\t" + infos[i][3] + "\n")
+			escreva("\nG2 - " + (i + 1) + "\t\t" + nomes[i] + "\t\t" + email[i] + "\t\t" + entregou + "\t\t" + nota[i] + "\n")
 		}
 		
 		enquanto(continua) {	
 			escreva("\nEscolha o código desejado para ver o aluno:\n")
 			leia(escolhas)
+			escreva("O aluno fez a entrega? Sim / Não\n")
+			leia(entregou)
+		
 			// Loop para passar por todos os índices (posições) dos alunos e caso encontre o índice(posição) escolhida
 			// pelo usuário, escrever as informações do usuário na tela
 			para (inteiro i = 1; i <= 29; i++) {
+				// Confira se o i está no valor do código escolhido
 				se (Tipos.cadeia_para_inteiro(escolhas, 10) == i) {
+					// Confira se o primeiro caracter da entrega é sim usando a função primeiro_char(string)
+					se (Texto.obter_caracter(entregou, 0) == 'S' ou Texto.obter_caracter(entregou, 0) == 's') {
+						entregou = "Sim"
+						nota[i-1]++
+					} senao {
+						entregou = "Não"
+					}
 					escreva("CODIGO\t\tNOME\t\t\t\tEMAIL\t\t\t\t\tENTREGOU\tNOTA")
-					escreva("\nG1 - " + i + "\t\t" + infos[i-1][0] + "\t\t" + infos[i-1][1] + "\t\t" + infos[i-1][2] + "\t\t" + infos[i-1][3] + "\n")
+					escreva("\nG2 - " + i + "\t\t" + nomes[i-1] + "\t\t" + email[i-1] + "\t\t" + entregou + "\t\t" + nota[i-1] + "\n")
 				}
 			}
 			escreva("\nDeseja continuar? Sim / Não\n")
@@ -153,14 +149,16 @@ programa{
 			}
 		}
 	}
+
+	
 }
 /* $$$ Portugol Studio $$$ 
  * 
  * Esta seção do arquivo guarda informações do Portugol Studio.
  * Você pode apagá-la se estiver utilizando outro editor.
  * 
- * @POSICAO-CURSOR = 161; 
- * @DOBRAMENTO-CODIGO = [8, 39, 72];
+ * @POSICAO-CURSOR = 3369; 
+ * @DOBRAMENTO-CODIGO = [10, 41, 74];
  * @PONTOS-DE-PARADA = ;
  * @SIMBOLOS-INSPECIONADOS = ;
  * @FILTRO-ARVORE-TIPOS-DE-DADO = inteiro, real, logico, cadeia, caracter, vazio;
