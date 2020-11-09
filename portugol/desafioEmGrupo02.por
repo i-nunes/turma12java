@@ -8,14 +8,14 @@ programa
 	{	/*
 		PROJETO
 		ESPECIFICAÇÃO DE PROGRAMA:
-		NOME DE LOJA: CADA GRUPO INVENTAR
-		QUERO 10 PRODUTOS DIFERENTES – CADA GRUPO DEFINE
-		QUERO SABE SE É LITRO, KG, QDE, PEÇA, UNIDADE – CONFORME O PRODUTO
-		VALOR UNITARIO POR UNIDADE
-		O ESTOQUE MINIMO DE SAIDA É 10 POR UNIDADE
+		NOME DE LOJA: CADA GRUPO INVENTAR	OK
+		QUERO 10 PRODUTOS DIFERENTES – CADA GRUPO DEFINE	OK
+		QUERO SABE SE É LITRO, KG, QDE, PEÇA, UNIDADE – CONFORME O PRODUTO	OK
+		VALOR UNITARIO POR UNIDADE	OK
+		O ESTOQUE MINIMO DE SAIDA É 10 POR UNIDADE OK
 		TUDO ISSO EM VETOR
-		CRIAR UM CODIGO DE PRODUTO PARA CADA PRODUTO
-		[O CARRINHO DE COMPRA É UM VETOR DE COMPRAS]
+		CRIAR UM CODIGO DE PRODUTO PARA CADA PRODUTO OK
+		[O CARRINHO DE COMPRA É UM VETOR DE COMPRAS]	
 		*O CLIENTE SÓ PODE COMPRAR 10 PRODUTOS SEM REPETIÇÃO
 		O PROGRAMA DEVER:
 		MOSTRA OS PRODUTOS COM TODOS OS DADOS
@@ -41,17 +41,17 @@ programa
      cadeia continuar
      cadeia continuar2
      logico continua2 = verdadeiro
-     logico continua = verdadeiro
      inteiro codigo
-     inteiro compras[10]
-     real total = 0.0
      caracter pagamento = '0'
      real imposto
      inteiro qntd = 0
      cadeia comprador[2]
 	inteiro x
+	inteiro compras[10]
+	real total = 0.0, parcelas = 0.0
 
      escreva("Bem Vindo a MIIJ Games, A maior loja de Games da internet!\n")
+     
 	// Continuar na loja
      enquanto(continua2) {
 		// Peça nome e cpf do cliente
@@ -60,25 +60,33 @@ programa
 		escreva("Digite seu CPF: \n")
 		leia(comprador[1])
      	
+		// Liste os produtos a disposição
 		escreva("Temos os seguintes produtos a sua disposição:\n")
 	  	para(x = 0 ; x < 10; x++){
 			escreva("\n",x+1,"- ",mercadoria[x]," o valor do produto R$",mat.arredondar(preco[x],2), " em estoque ", unidades[x])
 			escreva("\n")
 		}
 		escreva("\n")
-		escreva("Nossos estoques contam com 10 produtos de cada tipo. Boas Compras!")
+		escreva("Nossos estoques contam com 10 unidades de cada produto. Boas Compras!")
 		
 		// Popular carrinho de compras
+    		logico continua = verdadeiro
 		enquanto (continua) {
+			// Pedir código do produto a ser comprado
 			escreva("\nDigite o código do produto que deseja comprar\n")
 			leia(codigo)
-			se (codigo >= 1 ou codigo <= 10) {
+			se (codigo >= 1 e codigo <= 10) {
+				// Decremento do valor de código para que se iguale ao indice da mercadoria
 				codigo--
+				// Loop até 10 para cobrir toda a lista de itens
 				para(x = 0; x < 10; x++) {
+					// Caso item seja encontrado, verifica se está disponível no estoque
 					se (codigo == x e unidades[x] == 0) {				
 						escreva("\nO produto não está disponível no estoque!\n")
 					}
 					senao se (codigo == x) {
+						// Todo o início do loop, zerar a quantidade para que o usuário seja perguntado a qntd do produto
+						qntd = 0
 						enquanto (qntd > 10 ou qntd < 1) {
 							escreva("\nDigite a quantidade que deseja\n")
 							leia(qntd)
@@ -86,9 +94,12 @@ programa
 								escreva("Digite uma quantidade válida do estode [1-10]\n")
 							}
 						}
+						// Caso a quantidade escolhida seja menor ou igual a quantidade de unidades em estoque,
+						// adicionar a quantidade à compra e subtrair a quantidade das unidades em estoque
 						se (qntd <= unidades[x]) {
 							compras[x] = compras[x] + qntd
 							unidades[x] = unidades[x] - qntd
+							total += (preco[x] * qntd) 
 							escreva("Você selecionou " + qntd + " unidades de " + mercadoria[x] + "\n")
 						} senao {
 							escreva("Não há unidades o suficiente disponível em estoque.\n") 
@@ -101,35 +112,43 @@ programa
 				escreva("\nO código digitado não corresponde à um produto!")
 			}
 			para(x= 0; x < 10; x++) {
+				// Loop pelo vetor de compras e confira, caso haja compras, imprimir a relação para o usuário
 				se (compras[x] != 0) {
-					escreva("\nVocê tem " + compras[x] + " unidades de " + mercadoria[x] + " custando: R$ " + preco[x])
 					escreva("\nExistem " + unidades[x] + " unidades restantes de " + mercadoria[x] + "\n") 
-					total += preco[x]
 				}
 			}
 			escreva("\nDeseja continuar comprando? Sim / Não\n")
 			leia(continuar)
+			limpa()
+			// Alterar o valor da variável continua de verdadeiro para falso, caso o usuário decida não continuar comprando
+			// fazendo assim que o loop do carrinho se quebre
 			se (Texto.obter_caracter(continuar, 0) == 'N' ou Texto.obter_caracter(continuar, 0) == 'n') {
 				continua = falso
 			}
 		}
 		
-		
 		escreva("\nVocê finalizou suas compras!\n")
-		escreva("Suas compras foram:\n")
+		escreva("Seu carrinho:\n\n")
+		// Listar as compras no carrinho
 		para (x = 0; x < 10; x++) {	
-			escreva(compras[x] + " unidades de " + mercadoria[x] + "\n")
+			se (compras[x] != 0) {
+				escreva(compras[x] + " unidades de " + mercadoria[x] + "\n")
+				escreva("\n------------------\n")
+			}
 		}
+		// Calcular imposto e mostrar opções de pagamento
 		imposto = total * 0.09
-		escreva("O valor total de sua compra foi: R$ " + total + "e R$ " + imposto + " de impostos")
-		escreva("Escolha a forma de pagamento: ")
+		escreva("O valor total de sua compra foi: R$ " + total + " e R$ " + imposto + " de impostos\n")
+		escreva("Opções de pagamento: ")
 		escreva("\n1 - Á vista em dinheiro ou cheque(20% de desconto)")
 		escreva("\n2 - A vista no cartão de crédito(15% de desconto)")
 		escreva("\n3 - Em duas vezes(sem desconto)")
 		escreva("\n4 - 3x no cartão (10% de juros)\n")
-		leia(pagamento)
-	
-		enquanto (pagamento != '1' ou pagamento != '2' ou pagamento != '3' ou pagamento != '4') {
+
+		// Pergunte a forma de pagamento até que seja respondido uma forma válida
+		faca {
+			escreva("Digite a forma de pagamento\n")
+			leia(pagamento)
 			se (pagamento == '1') {
 				total = total - (total * 0.2)
 			} senao se (pagamento == '2') {
@@ -140,8 +159,9 @@ programa
 				total = total + (total * 0.1)
 			} senao {
 				escreva("\nEscolha uma forma de pagamento válida\n")
-			}	
-		}
+			}
+		} enquanto (pagamento != '1' e pagamento != '2' e pagamento != '3' e pagamento != '4')
+
 		/*
 			NOME DA LOJA - CNPJ
 			NOME DO COMPRADOR - CPF
@@ -151,8 +171,8 @@ programa
 			forma de pagamento
 			valor total da nota
 		*/
-		escreva("MIIJ Games - 143.944.583/0001-52\n")
-		escreva(comprador[0] + " - " + comprador[1])
+		escreva("\n\nMIIJ Games - 143.944.583/0001-52\n")
+		escreva(comprador[0] + " - " + comprador[1] + "\n")
 		para (x = 0; x < 10; x++) {
 			se (compras[x] != 0) {
 				escreva(compras[x] + "\t" + mercadoria[x] + "\t R$ " + preco[x] + "\n")
@@ -160,6 +180,14 @@ programa
 		}
 		escreva("Imposto de ICMS R$ " + imposto + "\n")
 		escreva("Total da nota: R$ " + (total + imposto) + "\n\n")
+		
+		se (pagamento == '3') {
+			parcelas = total / 2
+			escreva("Pagar em 2x de R$ " + parcelas + "\n")
+		} senao se (pagamento == '4') {
+			parcelas = total / 3
+			escreva("Pagar em 3x de R$ " + parcelas + "\n")
+		}
 
 		escreva("Deseja comprar mais? Sim / Não \n")
 		leia(continuar2)
@@ -174,8 +202,8 @@ programa
  * Esta seção do arquivo guarda informações do Portugol Studio.
  * Você pode apagá-la se estiver utilizando outro editor.
  * 
- * @POSICAO-CURSOR = 3733; 
- * @PONTOS-DE-PARADA = ;
+ * @POSICAO-CURSOR = 3971; 
+ * @PONTOS-DE-PARADA = 105;
  * @SIMBOLOS-INSPECIONADOS = ;
  * @FILTRO-ARVORE-TIPOS-DE-DADO = inteiro, real, logico, cadeia, caracter, vazio;
  * @FILTRO-ARVORE-TIPOS-DE-SIMBOLO = variavel, vetor, matriz, funcao;

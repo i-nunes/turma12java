@@ -4,7 +4,7 @@ import java.math.*;
 public class Lista01Java {
 	
 	public static void main(String[] args) {
-		
+		exercicio_6();
 	}
 	
 	public static void exercicio_1() {
@@ -91,15 +91,14 @@ public class Lista01Java {
 		System.out.println("Valor de y2:");
 		int y2 = read.nextInt();
 		
-		System.out.printf("O resultado da expressão é: ",
-				(Math.sqrt(Math.pow((x2 - x1), 2) + Math.pow((y2 - y1), 2)))
+		System.out.printf("O resultado da expressão é: " +
+				(Math.ceil(Math.sqrt(Math.pow((x2 - x1), 2) + Math.pow((y2 - y1), 2))))
 				);
 		
 		read.close();
 	}
-	public static void exercicio_7() {		
+	public static void exercicio_7() {			
 		Scanner read = new Scanner(System.in);
-		double x, y;
 		
 		System.out.println("Valor de a: ");
 		double a = read.nextDouble();
@@ -115,11 +114,9 @@ public class Lista01Java {
 		double f = read.nextDouble();
 		System.out.printf("\na: %.2f\nb: %.2f\nc: %.2f\nd: %.2f\ne: %.2f\nf: %.2f\n",
 				a, b, c, d, e, f);
-		
-		// Dúvida: Por que ao usar valor como "1" para todas as variáveis o x e y
-		// estão retornando como NaN?
-		x = ((c * e) - (b * f)) / ((a * e) - (b * d));
-		y = ((a * f) - (c * d)) / ((a * e) - (b * d));
+
+		double x = ((c * e) - (b * f)) / ((a * e) - (b * d));
+		double y = ((a * f) - (c * d)) / ((a * e) - (b * d));
 		
 		System.out.println("Valor de x: " + x + "\nValor de y: " + y + "\n");		
 		
