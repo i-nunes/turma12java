@@ -4,7 +4,7 @@ import java.math.*;
 public class Lista01Java {
 	
 	public static void main(String[] args) {
-		exercicio_8();
+		
 	}
 	
 	public static void exercicio_1() {
