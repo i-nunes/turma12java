@@ -32,7 +32,7 @@ programa
                RELAÇÃO DE PRODUTOS COMPRADOS
                IMPOSTO PAGO
                VALOR A PAGA NO TIPO SELECIONADO
-               O PROGRAMA DEVER INFORMAR SE CONTINUA S OU NÃO PARA O PROXIMO USUARIO, SENÃO SAIR DO PROGRAMA, SE SIM, RECOMEÇA 
+               O PROGRAMA DEVER INFORMAR SE CONTINUA S OU NÃO PARA O PROXIMO USUARIO, SENÃO SAIR DO PROGRAMA, SE SIM, RECOMEÇA
                MAIS JÁ CONSIDERAR A ALTERAÇÃO DO ESTOQUE.
 		*/
 	cadeia mercadoria[10]={"ps4","ps4 Pro","xbox 360","xbox X Series","ps3","controle Xbox","Controle PS4","Pc Gamer","Controle PC","Teclado Gamer"}
@@ -50,8 +50,10 @@ programa
 	inteiro compras[10]
 	real total = 0.0, parcelas = 0.0
 
+	/*********************************
+	************JOAQUIM***************
+	**********************************/
      escreva("Bem Vindo a MIIJ Games, A maior loja de Games da internet!\n")
-     
 	// Continuar na loja
      enquanto(continua2) {
 		// Peça nome e cpf do cliente
@@ -94,27 +96,36 @@ programa
 								escreva("Digite uma quantidade válida do estode [1-10]\n")
 							}
 						}
+
+						/*********************************
+						************ISAC***************
+						**********************************/
 						// Caso a quantidade escolhida seja menor ou igual a quantidade de unidades em estoque,
 						// adicionar a quantidade à compra e subtrair a quantidade das unidades em estoque
 						se (qntd <= unidades[x]) {
 							compras[x] = compras[x] + qntd
 							unidades[x] = unidades[x] - qntd
-							total += (preco[x] * qntd) 
+							total += (preco[x] * qntd)
 							escreva("Você selecionou " + qntd + " unidades de " + mercadoria[x] + "\n")
 						} senao {
-							escreva("Não há unidades o suficiente disponível em estoque.\n") 
+							escreva("Não há unidades o suficiente disponível em estoque.\n")
 							escreva("Estoque: " + unidades[x] + " unidades de " + mercadoria[x] + "\n")
 						}
 					}
 				}
 			}
+
+
+			/*********************************
+			************MARIANA***************
+			**********************************/
 			senao {
 				escreva("\nO código digitado não corresponde à um produto!")
 			}
 			para(x= 0; x < 10; x++) {
 				// Loop pelo vetor de compras e confira, caso haja compras, imprimir a relação para o usuário
 				se (compras[x] != 0) {
-					escreva("\nExistem " + unidades[x] + " unidades restantes de " + mercadoria[x] + "\n") 
+					escreva("\nExistem " + unidades[x] + " unidades restantes de " + mercadoria[x] + "\n")
 				}
 			}
 			escreva("\nDeseja continuar comprando? Sim / Não\n")
@@ -145,6 +156,9 @@ programa
 		escreva("\n3 - Em duas vezes(sem desconto)")
 		escreva("\n4 - 3x no cartão (10% de juros)\n")
 
+		/*********************************
+		**************IURI****************
+		**********************************/
 		// Pergunte a forma de pagamento até que seja respondido uma forma válida
 		faca {
 			escreva("Digite a forma de pagamento\n")
@@ -161,34 +175,42 @@ programa
 				escreva("\nEscolha uma forma de pagamento válida\n")
 			}
 		} enquanto (pagamento != '1' e pagamento != '2' e pagamento != '3' e pagamento != '4')
-
 		/*
 			NOME DA LOJA - CNPJ
-			NOME DO COMPRADOR - CPF
+			NOME DO COMPRADOR - CPF	
 			Loop (valor de cada produto):
 				quantidae - produto - valor do produto
 			valor do imposto
 			forma de pagamento
 			valor total da nota
 		*/
+		limpa()
+		escreva("---------------------------------------")
 		escreva("\n\nMIIJ Games - 143.944.583/0001-52\n")
-		escreva(comprador[0] + " - " + comprador[1] + "\n")
+		escreva("\n------------------------------------\n")
+		escreva("comprador "+comprador[0] + " - CPF: " + comprador[1] + "\n")
 		para (x = 0; x < 10; x++) {
 			se (compras[x] != 0) {
 				escreva(compras[x] + "\t" + mercadoria[x] + "\t R$ " + preco[x] + "\n")
+				escreva("\n")
 			}
 		}
-		escreva("Imposto de ICMS R$ " + imposto + "\n")
-		escreva("Total da nota: R$ " + (total + imposto) + "\n\n")
+		escreva("\n")
+		escreva("\n")
+		escreva("\n")
+		escreva("Imposto de ICMS R$ " + mat.arredondar(imposto, 2) + "\n")
+		escreva("\n------------------------------------\n")
+		escreva("Total da nota: R$ " + mat.arredondar((total + imposto),2)+ "\n\n")
+		escreva("--------------------------------------\n")
+		
 		
 		se (pagamento == '3') {
 			parcelas = total / 2
-			escreva("Pagar em 2x de R$ " + parcelas + "\n")
+			escreva("Pagar em 2x de R$ " +mat.arredondar(parcelas,2) + "\n")
 		} senao se (pagamento == '4') {
 			parcelas = total / 3
-			escreva("Pagar em 3x de R$ " + parcelas + "\n")
+			escreva("Pagar em 3x de R$ " + mat.arredondar(parcelas,2) + "\n")
 		}
-
 		escreva("Deseja comprar mais? Sim / Não \n")
 		leia(continuar2)
      	se (Texto.obter_caracter(continuar2, 0) == 'N' ou Texto.obter_caracter(continuar2, 0) == 'n') {
@@ -202,8 +224,8 @@ programa
  * Esta seção do arquivo guarda informações do Portugol Studio.
  * Você pode apagá-la se estiver utilizando outro editor.
  * 
- * @POSICAO-CURSOR = 3971; 
- * @PONTOS-DE-PARADA = 105;
+ * @POSICAO-CURSOR = 1361; 
+ * @PONTOS-DE-PARADA = ;
  * @SIMBOLOS-INSPECIONADOS = ;
  * @FILTRO-ARVORE-TIPOS-DE-DADO = inteiro, real, logico, cadeia, caracter, vazio;
  * @FILTRO-ARVORE-TIPOS-DE-SIMBOLO = variavel, vetor, matriz, funcao;

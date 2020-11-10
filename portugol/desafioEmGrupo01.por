@@ -7,6 +7,9 @@ programa{
 	
 	funcao inicio()
 	{
+		/*
+		
+		*/
 		// Declaração de variáveis
 	    	cadeia nomes[29] = {
 			"Ana veronica Nascimento",
@@ -157,8 +160,8 @@ programa{
  * Esta seção do arquivo guarda informações do Portugol Studio.
  * Você pode apagá-la se estiver utilizando outro editor.
  * 
- * @POSICAO-CURSOR = 3369; 
- * @DOBRAMENTO-CODIGO = [10, 41, 74];
+ * @POSICAO-CURSOR = 185; 
+ * @DOBRAMENTO-CODIGO = [13, 44, 77];
  * @PONTOS-DE-PARADA = ;
  * @SIMBOLOS-INSPECIONADOS = ;
  * @FILTRO-ARVORE-TIPOS-DE-DADO = inteiro, real, logico, cadeia, caracter, vazio;

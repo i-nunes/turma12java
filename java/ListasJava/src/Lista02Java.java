@@ -3,7 +3,7 @@ import java.util.Scanner;
 public class Lista02Java {
 	
 	public static void main(String[] args) {
-		exercicio_8();
+		exercicio_2();
 	}
 	
 	public static void exercicio_1() {
@@ -23,24 +23,23 @@ public class Lista02Java {
 		read.close();
 	}
 	public static void exercicio_2() {
-		final double valorHora = 10.00;
-		double E = 0.0, N, salarioTotal, salarioExcedente;
+		final double valorHora = 10.0, valorExcedente = 20.0, limite = 50.0;
+		double E, N;
+		String C;
 		Scanner read = new Scanner(System.in);
 		
+		System.out.println("Digite seu código de funcionário: ");
+		C = read.nextLine();
 		System.out.println("Digite o total de horas trabalhas: ");
 		N = read.nextDouble();
 		
-		if (N > 50) {
-			E = N - 50;
-		}
+		E = (N > limite) ? (N - limite):0.0; 
 		
-		salarioTotal = (valorHora * (N - E)) + (valorHora * 2 * E);
-		salarioExcedente = (valorHora * 2) * E;
-		
-		System.out.printf("Seu salário total é de: R$ %.2f\n"
-				+ "Seu salário excedente é de: R$ %.2f\n",
-				salarioTotal,
-				salarioExcedente);
+		System.out.printf("Olá! Seu código é %s.\nSeu salário total é de: R$ %.2f\n"
+				+ "------\tSeu salário excedente é de: R$ %.2f\n",
+				C,
+				((valorHora * (N - E)) + valorExcedente * E),
+				valorExcedente * E);
 		
 		read.close();
 	}
