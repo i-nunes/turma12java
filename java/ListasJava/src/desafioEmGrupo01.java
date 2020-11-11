@@ -74,7 +74,12 @@ public class desafioEmGrupo01 {
 			boolean continua = true;
 			String entregou = "Não";
 			Scanner read = new Scanner(System.in);
+			String codigo[] = new String[29];
 			
+			// Criação dos códigos
+			for (int i = 0; i < 29; i++) {
+				codigo[i] = "A" + (i+1);
+			}
 			// Criação do vetor de notas
 			for (int i = 0; i < 29; i++) {
 				// Atribuição da nota (iniciando em 0) para cada aluno
@@ -88,48 +93,53 @@ public class desafioEmGrupo01 {
 				int divisaoGrupo=0;
 				
 				do {
-					System.out.println("1 - Dividir por grupo;");
-					System.out.println("2 - Dividir por gênero;");
+					System.out.println("1 - Dividir por grupo");
+					System.out.println("2 - Dividir por gênero");
 					opcao = read.nextInt();
 					
 					if(opcao == 1) {
 						do {
 							System.out.println("Divisão de quantas pessoa no grupo: ");
 							divisaoGrupo = read.nextInt();
-							System.out.println("CODIGO\t\tNOME\t\t\t\tEMAIL\t\t\t\t\tENTREGOU\tNOTA");
+							System.out.println("CODIGO\tGRUPO\tNOME\t\t\t\tEMAIL\t\t\t\t\tENTREGOU\tNOTA\tGENERO");
 						} while (divisaoGrupo < 2 || divisaoGrupo > 10 );
 						
 						//Restante do código para dividir em grupo						
 						for (int i = 0; i < 29; i++) {
+							String aux = (masculino[i]) ? "Homem" : "Mulher";
+							
 							if ((29-i) < 3) {
-								System.out.printf("G%d\t\t%s\t\t\t%s\t\t\t\t%s\t%d\n" ,
-										(contador) ,nomes[i], email[i], entregou, nota[i]);
+								System.out.printf("%s\tG%d\t%s\t%s\t\t%s\t\t%d\t\t%s\n" ,
+										codigo[i], (contador) ,nomes[i],
+										email[i], entregou, nota[i], aux);
 							} else if (i % divisaoGrupo == 0) {
 								contador++;
-								System.out.println("----------------------------------");
-								System.out.printf("G%d\t\t%s\t\t\t%s\t\t\t\t%s\t%d\n" ,
-										(contador) ,nomes[i], email[i], entregou, nota[i]);
+								System.out.println("------------------------------------------------------------------------------------------------------------------");
+								System.out.printf("%s\tG%d\t%s\t%s\t\t%s\t\t%d\t\t%s\n",
+										codigo[i], (contador) ,nomes[i],
+										email[i], entregou, nota[i], aux);
 							} else {
-								System.out.printf("G%d\t\t%s\t\t\t%s\t\t\t\t%s\t%d\n" ,
-										(contador) ,nomes[i], email[i], entregou, nota[i]);
+								System.out.printf("%s\tG%d\t%s\t%s\t\t%s\t\t%d\t\t%s\n" ,
+										codigo[i], (contador) ,nomes[i],
+										email[i], entregou, nota[i], aux);
 							}
 						}
 						
 						
 					} else if(opcao == 2) {
-						System.out.println("CODIGO\t\tNOME\t\t\t\tEMAIL\t\t\t\t\tENTREGOU\tNOTA");
+						System.out.println("CODIGO\tGRUPO\tNOME\t\t\t\tEMAIL\t\t\t\t\tENTREGOU\tNOTA\tGENERO");
 						// Dividir por gênero
  						for (int i = 0; i < 29; i++) {
  							if (masculino[i]) {
- 								System.out.printf("Menino\t\t%s\t\t\t%s\t\t\t\t%s\t%d\n" ,
- 										nomes[i], email[i], entregou, nota[i]);
+ 								System.out.printf("%s\t\t%s\t\t%s\t\t%s\t\t%d\tHomem\n" ,
+ 										codigo[i], nomes[i], email[i], entregou, nota[i]);
  							}
  						}
  						System.out.println("---------------------------------------------");
  						for (int i = 0; i < 29; i++) {
  							if (!masculino[i]) {
- 								System.out.printf("Menina\t\t%s\t\t\t%s\t\t\t\t%s\t%d\n" ,
- 										nomes[i], email[i], entregou, nota[i]);
+ 								System.out.printf("%s\t\t%s\t\t%s\t\t%s\t\t%d\tMulher\n" ,
+ 										codigo[i], nomes[i], email[i], entregou, nota[i]);
  							}
  						}
 					}
@@ -145,8 +155,9 @@ public class desafioEmGrupo01 {
 				// pelo usuário, escrever as informações do usuário na tela
 				
 				for (int i = 1; i <= 29; i++) {
+					String aux = "";
 					// Confira se o i está no valor do código escolhido
-					if (Integer.parseInt(escolhas) == i) {
+					if (escolhas == codigo[i]) {
 						// Confira se o primeiro caracter da entrega é sim usando a função primeiro_char(string)
 						if (entregou.toUpperCase().charAt(0) == 'S') {
 							entregou = "Sim";
@@ -154,9 +165,11 @@ public class desafioEmGrupo01 {
 						} else {
 							entregou = "Não";
 						}
-						System.out.println("CODIGO\t\tNOME\t\t\t\tEMAIL\t\t\t\t\tENTREGOU\tNOTA");
-						System.out.printf("\nG2 - " + i + "\t\t" + nomes[i-1] + "\t\t" + email[i-1] 
-								+ "\t\t" + entregou + "\t\t" + nota[i-1] + "\n");
+						System.out.println("CODIGO\tGRUPO\tNOME\t\t\t\tEMAIL\t\t\t\t\tENTREGOU\tNOTA\tGENERO");
+						aux = (masculino[i-1]) ? "Homem" : "Mulher";
+						System.out.printf("%s\t\t%s\t\t\t%s\t\t\t\t%s\t%d\t%s\n" ,
+								codigo[i-1], nomes[i-1], email[i-1], entregou, nota[i-1], aux); 
+						
 					}
 				}
 				System.out.println("Deseja continuar? Sim / Não");
