@@ -4,7 +4,7 @@ import java.math.*;
 public class Lista04Java {
 	static Scanner read = new Scanner(System.in);
 	public static void main(String[] args) {
-		exercicio_1();
+		exercicio_3();
 	}
 	public static int getRandom(int min, int max) {
 	    return (int) ((Math.random() * (max - min)) + min);
@@ -13,7 +13,7 @@ public class Lista04Java {
 		int pontuacoes[] = new int[5], maior = 0;
 		
 		for (int i = 0; i < 5; i++) {
-			System.out.println("Escreva a pontua��o da atividade " +
+			System.out.println("Escreva a pontuação da atividade " +
 					(i+1) + ": ");
 			pontuacoes[i] = read.nextInt();
 			
@@ -22,11 +22,11 @@ public class Lista04Java {
 			}
 		}
 		for (int i = 0; i < 5; i++) {
-			System.out.println("Pontua��o " +
+			System.out.println("Pontuação " +
 					(i + 1) + ": " + pontuacoes[i]);
 		}
 		
-		System.out.println("A maior pontua��o � de: " +
+		System.out.println("A maior pontuação é de: " +
 					maior + " pontos!");
 	}
 	public static void exercicio_2() {
@@ -45,7 +45,7 @@ public class Lista04Java {
 		}
 		
 		for (int i = 0; i < qntd; i++) {
-			System.out.println("Lan�amento " +
+			System.out.println("Lançamento " +
 					(i+1) + ": " +
 					lancamentos[i]);
 			if (lancamentos[i] == maior) {
@@ -54,9 +54,9 @@ public class Lista04Java {
 		}
 		
 		media = soma / qntd;
-		System.out.println("A media dos lan�amentos �: " +
+		System.out.println("A media dos lançamentos é: " +
 					media);
-		System.out.println("O maior lan�amento foi: " + maior + 
+		System.out.println("O maior lançamento foi: " + maior + 
 					" e esse resultado foi rolado " +
 					contador + " vezes");
 		
@@ -75,34 +75,42 @@ public class Lista04Java {
 				M2[i][j] = (N1[i][j] - N2[i][j]);
 			}
 		}
-		System.out.println("\nMatriz N1:\n");
+		System.out.println("\nMatriz N1:");
 		for (int i = 0; i < LINHAS; i++) {
+			System.out.println("────────────────────────────────────────────────────────────────────────────────────────────────");
 			for (int j = 0; j < COLUNAS; j++) {
-				System.out.println(N1[i][j] + "    ");
+				System.out.printf("|\t%d\t", N1[i][j]);
 			}
-			System.out.println("\n");
+			System.out.printf("|\n");
 		}
-		System.out.println("\nMatriz N2:\n");
+		System.out.println("────────────────────────────────────────────────────────────────────────────────────────────────");
+		System.out.println("\nMatriz N2:");
 		for (int i = 0; i < LINHAS; i++) {
+			System.out.println("────────────────────────────────────────────────────────────────────────────────────────────────");
 			for (int j = 0; j < COLUNAS; j++) {
-				System.out.println(N2[i][j] + "    ");
+				System.out.printf("|\t%d\t", N2[i][j]);
 			}
-			System.out.println("\n");
+			System.out.printf("|\n");
 		}
-		System.out.println("\nMatriz M1:\n");
+		System.out.println("────────────────────────────────────────────────────────────────────────────────────────────────");
+		System.out.println("\nMatriz M1:");
 		for (int i = 0; i < LINHAS; i++) {
+			System.out.println("────────────────────────────────────────────────────────────────────────────────────────────────");
 			for (int j = 0; j < COLUNAS; j++) {
-				System.out.println(M1[i][j] + "    ");
+				System.out.printf("|\t%d\t", M1[i][j]);
 			}
-			System.out.println("\n");
+			System.out.printf("|\n");
 		}
-		System.out.println("\nMatriz M2:\n");
+		System.out.println("────────────────────────────────────────────────────────────────────────────────────────────────");
+		System.out.println("\nMatriz M2:");
 		for (int i = 0; i < LINHAS; i++) {
+			System.out.println("────────────────────────────────────────────────────────────────────────────────────────────────");		
 			for (int j = 0; j < COLUNAS; j++) {
-				System.out.println(M2[i][j] + "    ");
+				System.out.printf("|\t%d\t", M2[i][j]);
 			}
-			System.out.println("\n");
+			System.out.printf("|\n");
 		}
+		System.out.println("────────────────────────────────────────────────────────────────────────────────────────────────");
 	}
 	public static void exercicio_4() {
 		final int LINHA = 3, COLUNA = 3;
@@ -124,7 +132,7 @@ public class Lista04Java {
 			}
 		}
 		
-		System.out.println("A soma dos valores da matriz �: " + soma +
-							"\nA soma da da diagonal principal �: " + diagonal);
+		System.out.println("A soma dos valores da matriz é: " + soma +
+							"\nA soma da da diagonal principal é: " + diagonal);
 	}
 }

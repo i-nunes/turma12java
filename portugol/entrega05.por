@@ -177,23 +177,6 @@ programa
 			escreva("\n")
 		}
 
-		//Multiplicação Vetor x Matriz
-		/*
-			matriz[j][i] * vetor[i] = 
-			loop 1:
-			linhaxcoluna [0,0] * coluna [0]
-			linhaxcoluna [0,1] * coluna [1]
-			linhaxcoluna [0,2] * coluna [2]
-			Loop 2:
-			linhaxcoluna [1,0] * coluna [0]
-			linhaxcoluna [1,1] * coluna [1]
-			linhaxcoluna [1,2] * coluna [2]
-			Loop 3:
-			linhaxcoluna [2,0] * coluna [0]
-			linhaxcoluna [2,1] * coluna [1]
-			linhaxcoluna [2,2] * coluna [2]
-			
-		*/
 		para (inteiro linha = 0; linha < qntd; linha++) {
 			para (inteiro coluna = 0; coluna < qntd; coluna++) {
 				 multi[linha] += matriz[linha][coluna] * vetor[coluna] 
@@ -215,8 +198,8 @@ programa
  * Esta seção do arquivo guarda informações do Portugol Studio.
  * Você pode apagá-la se estiver utilizando outro editor.
  * 
- * @POSICAO-CURSOR = 111; 
- * @DOBRAMENTO-CODIGO = [10, 44, 74, 115, 148];
+ * @POSICAO-CURSOR = 5704; 
+ * @DOBRAMENTO-CODIGO = [10];
  * @PONTOS-DE-PARADA = ;
  * @SIMBOLOS-INSPECIONADOS = ;
  * @FILTRO-ARVORE-TIPOS-DE-DADO = inteiro, real, logico, cadeia, caracter, vazio;
