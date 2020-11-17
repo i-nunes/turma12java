@@ -1,183 +1,194 @@
 import java.util.Scanner;
+import java.math.*;
+import oop.DesafioEcommerce.*;
 
 public class desafioEmGrupo01 {
 
 	public static void main(String[] args) {
-		String nomes[] = {
-				"Ana veronica Nascimento",
-				"Bruno Estivalli Vicente",
-				"Bruno Henrique Moraes  ",
-				"Daniel Ferreira        ",
-				"Dayane de Oliveira     ",
-				"Denis Vinicius Bolla   ",
-				"Diego  Joaquim Silva   ",
-				"Erick Alan             ",
-				"Everson Silva          ",
-				"Gabriel Enrique Cabral ",
-				"Guilherme Alex         ",
-				"Guilherme Fidelis      ",
-				"Gustavo Miquéias Lopes ",
-				"Isac Cordeiro          ",
-				"Iuri Garcia Nunes      ",
-				"Jenifer Lima Placido   ",
-				"Jéssica Cristiane      ",
-				"Joao Pedro Sena        ",
-				"Larissa Moraes Ribeiro ",
-				"Leonardo de Moraes     ",
-				"Lucas Santos Gonçalves ",
-				"Mariana  de Cássia     ",
-				"Patricia da Silva      ",
-				"Paula Leticia          ",
-				"Raul Fernandes         ",
-				"Ricardo Magalhaes      ",
-				"Thiago dos Anjos       ",
-				"Vitória Gonçalves      ",
-				"William Xavier         "
-		};
-		String email[] = {
-				"anaveronica3001@hotmail.com  ",
-				"bruno.estivalli@gmail.com    ",
-				"brunohmoraes93@gmail.com     ",
-				"daniel.z.ferreira@hotmail.com",
-				"dayane873@gmail.com          ",
-				"denisvini@gmail.com          ",
-				"joaquim.diego8@gmail.com     ",
-				"erickalan068@gmail.com       ",
-				"eversonmessias@outlook.com   ",
-				"gabrieldgrafico@outlook.com  ",
-				"guilhermealex01@gmail.com    ",
-				"gui.fdsk@hotmail.com         ",
-				"gumiqueias@hotmail.com       ",
-				"zaq.c@live.com               ",
-				"iurinunes01@gmail.com        ",
-				"jenifer.sdti@gmail.com       ",
-				"jessicacristianebtr@gmail.com",
-				"joao_usercon@hotmail.com     ",
-				"larissaribeiro03@hotmail.com ",
-				"leo_o_nardo1@outlook.com     ",
-				"lucas.00.santos@outlook.com  ",
-				"mari_oli25@hotmail.com		",
-				"pathsilva09@gmail.com		",
-				"paula.leticia.braz@gmail.com ",
-				"raulogus2@gmail.com		",
-				"ricardomrfin@gmail.com		",
-				"thiagohdosanjos99@gmail.com  ",
-				"vitoriagcf@hotmail.com		",
-				"william.xavier07@hotmail.com "
-			};
-			int nota[] = new int[29];
-			String escolhas;
-			boolean masculino [] = { false, true, true, true, false, true, true, true, true, true,
-				true, true, true, true, true, false, false, true, false, true, true, false, false, 				false, 
-				true, true, true, true, true
-			};
-			boolean continua = true;
-			String entregou = "Não";
-			Scanner read = new Scanner(System.in);
-			String codigo[] = new String[29];
+		/*
+		PROJETO
+		ESPECIFICAÇÃO DE PROGRAMA:
+		NOME DE LOJA: CADA GRUPO INVENTAR	OK
+		QUERO 10 PRODUTOS DIFERENTES – CADA GRUPO DEFINE	OK
+		QUERO SABE SE É LITRO, KG, QDE, PEÇA, UNIDADE – CONFORME O PRODUTO	OK
+		VALOR UNITARIO POR UNIDADE	OK
+		O ESTOQUE MINIMO DE SAIDA É 10 POR UNIDADE OK
+		TUDO ISSO EM VETOR
+		CRIAR UM CODIGO DE PRODUTO PARA CADA PRODUTO OK
+		[O CARRINHO DE COMPRA É UM VETOR DE COMPRAS]	
+		*O CLIENTE SÓ PODE COMPRAR 10 PRODUTOS SEM REPETIÇÃO
+		O PROGRAMA DEVER:
+		MOSTRA OS PRODUTOS COM TODOS OS DADOS
+		DAR A OPÇÃO DO USUARIO SELECIONAR UM PRODUTO E DIZER A QUANTIDADE A COMPRAR (NÃO PODE SELECIONAR PRODUTO COM QTDE ZERO)
+		DAR OPÇÃO AO USUARIO DE CONTINUAR COMPRANDO
+		CASO FINALIZADA A COMPRA MOSTRA O TOTAL, MOSTRA O IMPOSTO DE 9% TOTAL E AS OPÇÕES DE PAGAMENTO:
+		Código Condição de pagamento
+		1 À vista em dinheiro ou cheque, recebe 20% de desconto
+		2 À vista no cartão de crédito, recebe 15% de desconto
+		3 Em duas vezes, preço normal de etiqueta sem juros [ QUERO VER AS PARCELAS]
+		4 Em três vezes, preço normal de etiqueta mais juros de 10% [QUERO VER AS PARCELAS COM JUROS]
+               MOSTRA NOTA FISCAL
+               NOME EMPRESA
+               RELAÇÃO DE PRODUTOS COMPRADOS
+               IMPOSTO PAGO
+               VALOR A PAGA NO TIPO SELECIONADO
+               O PROGRAMA DEVER INFORMAR SE CONTINUA S OU NÃO PARA O PROXIMO USUARIO, SENÃO SAIR DO PROGRAMA, SE SIM, RECOMEÇA
+               MAIS JÁ CONSIDERAR A ALTERAÇÃO DO ESTOQUE.
+		*/
+		
+		String mercadoria[]={
+				"ps4","ps4 Pro","xbox 360","xbox X Series",
+				"ps3","controle Xbox","Controle PS4","Pc Gamer",
+				"Controle PC","Teclado Gamer"
+				}, continuar, continuar2, comprador[] = new String[2], nomevariavel;
+		boolean continua = true, continua2 = true;
+		char pagamento = '0';
+		int numeroNota = 1;
+		Scanner read = new Scanner(System.in);
+		int unidades [] ={10,10,10,10,10,10,10,10,10,10}, compras[] = new int[10], codigo, qntd = 0, x;
+		double preco [] = {
+				2000.15, 4000.87, 899.99, 3000.50, 900.45, 
+				120.99, 140.99, 129.01, 200.99, 140.99
+				}, total = 0.0, parcelas = 0.0, imposto;
+		
+		String produtos[] = new String[10];
+		
+		System.out.print("Bem Vindo a MIIJ Games, A melhor loja de Games da internet!\n");
+		System.out.print("Sua Aventura começa Aqui!\n");
+		
+		
+		while(continua2) {
 			
-			// Criação dos códigos
-			for (int i = 0; i < 29; i++) {
-				codigo[i] = "A" + (i+1);
-			}
-			// Criação do vetor de notas
-			for (int i = 0; i < 29; i++) {
-				// Atribuição da nota (iniciando em 0) para cada aluno
-				nota[i] = 0;
-			}
+			System.out.println("Digite seu nome: \n");
+			comprador[0] = read.nextLine();
+			System.out.println("Digite seu CPF: \n");
+			comprador[1] = read.nextLine();
 			
-
-			while (continua){
-				int opcao=0;
-				int contador = 0;
-				int divisaoGrupo=0;
-				
-				do {
-					System.out.println("1 - Dividir por grupo");
-					System.out.println("2 - Dividir por gênero");
-					opcao = read.nextInt();
-					
-					if(opcao == 1) {
-						do {
-							System.out.println("Divisão de quantas pessoa no grupo: ");
-							divisaoGrupo = read.nextInt();
-							System.out.println("CODIGO\tGRUPO\tNOME\t\t\t\tEMAIL\t\t\t\t\tENTREGOU\tNOTA\tGENERO");
-						} while (divisaoGrupo < 2 || divisaoGrupo > 10 );
-						
-						//Restante do código para dividir em grupo						
-						for (int i = 0; i < 29; i++) {
-							String aux = (masculino[i]) ? "Homem" : "Mulher";
-							
-							if ((29-i) < 3) {
-								System.out.printf("%s\tG%d\t%s\t%s\t\t%s\t\t%d\t\t%s\n" ,
-										codigo[i], (contador) ,nomes[i],
-										email[i], entregou, nota[i], aux);
-							} else if (i % divisaoGrupo == 0) {
-								contador++;
-								System.out.println("------------------------------------------------------------------------------------------------------------------");
-								System.out.printf("%s\tG%d\t%s\t%s\t\t%s\t\t%d\t\t%s\n",
-										codigo[i], (contador) ,nomes[i],
-										email[i], entregou, nota[i], aux);
-							} else {
-								System.out.printf("%s\tG%d\t%s\t%s\t\t%s\t\t%d\t\t%s\n" ,
-										codigo[i], (contador) ,nomes[i],
-										email[i], entregou, nota[i], aux);
-							}
-						}
-						
-						
-					} else if(opcao == 2) {
-						System.out.println("CODIGO\tGRUPO\tNOME\t\t\t\tEMAIL\t\t\t\t\tENTREGOU\tNOTA\tGENERO");
-						// Dividir por gênero
- 						for (int i = 0; i < 29; i++) {
- 							if (masculino[i]) {
- 								System.out.printf("%s\t\t%s\t\t%s\t\t%s\t\t%d\tHomem\n" ,
- 										codigo[i], nomes[i], email[i], entregou, nota[i]);
- 							}
- 						}
- 						System.out.println("---------------------------------------------");
- 						for (int i = 0; i < 29; i++) {
- 							if (!masculino[i]) {
- 								System.out.printf("%s\t\t%s\t\t%s\t\t%s\t\t%d\tMulher\n" ,
- 										codigo[i], nomes[i], email[i], entregou, nota[i]);
- 							}
- 						}
-					}
-				} while(opcao < 1 || opcao > 2);
-							
-				System.out.println("Escolha o código desejado para ver o aluno:");
-				escolhas = read.next();
-				System.out.println("O aluno fez a entrega? Sim / Não\n");
-				entregou = read.next();
 			
-				// Loop para passar por todos os índices (posições) dos alunos  
-				// e caso encontre o índice(posição) escolhida
-				// pelo usuário, escrever as informações do usuário na tela
-				
-				for (int i = 1; i <= 29; i++) {
-					String aux = "";
-					// Confira se o i está no valor do código escolhido
-					if (escolhas == codigo[i]) {
-						// Confira se o primeiro caracter da entrega é sim usando a função primeiro_char(string)
-						if (entregou.toUpperCase().charAt(0) == 'S') {
-							entregou = "Sim";
-							nota[i-1]++;
+		System.out.printf("Temos os seguintes produtos a sua disposição: \n");
+		
+		for(x=0;x<10;x++) {
+			System.out.printf("\n %d - %s o valor do produto R$ %.2f em estoque %d",(x+1),mercadoria[x],preco[x],unidades[x]);
+			System.out.print("\n");
+		}
+		System.out.print("\n");
+		System.out.print("Nossos estoques contam com 10 unidades de cada produto. Boas Compras!\n");
+		
+		
+		
+		while (continua) {
+			System.out.print("Digite o Código do produto que deseja comprar\n");
+			codigo = read.nextInt();
+			if (codigo >= 1 && codigo <= 10) {
+				codigo--;
+				 for(x=0;x<10;x++) {
+					 if (codigo == x && unidades[x] ==0) {
+						 System.out.print("\nO produto não está disponível no estoque!\n");
+					 }
+					 else if (codigo == x ) {
+						  
+						 qntd = 0;
+						 while(qntd >10 || qntd<1) {
+							 System.out.print("\nDigite a Quantidade que deseja\n");
+							 qntd = read.nextInt();
+							 if (qntd >10 || qntd <1) {
+								 System.out.print("\nDigite uma quantidade válida de estoque [1-10].\n");
+							 }
+							 
+						 }
+						if (qntd <= unidades[x]) {
+								compras[x] = compras[x] + qntd;
+								unidades[x] = unidades[x] - qntd;
+								total += (preco[x] * qntd);
+								System.out.println("Você selecionou " + qntd + " unidades de " + mercadoria[x] + "\n");
 						} else {
-							entregou = "Não";
+								System.out.println("Não há unidades o suficiente disponível em estoque.\n");
+								System.out.println("Estoque: " + unidades[x] + " unidades de " + mercadoria[x] + "\n");
 						}
-						System.out.println("CODIGO\tGRUPO\tNOME\t\t\t\tEMAIL\t\t\t\t\tENTREGOU\tNOTA\tGENERO");
-						aux = (masculino[i-1]) ? "Homem" : "Mulher";
-						System.out.printf("%s\t\t%s\t\t\t%s\t\t\t\t%s\t%d\t%s\n" ,
-								codigo[i-1], nomes[i-1], email[i-1], entregou, nota[i-1], aux); 
-						
-					}
-				}
-				System.out.println("Deseja continuar? Sim / Não");
-				escolhas = read.next();
-				// Obtém o caracter da primeira posição da cadeia {escolhas} e caso seja 'n' ou 'N', finaliza o programa
-				if (escolhas.toUpperCase().charAt(0) == 'N') {
-					continua = false;
-				}
+					 }
+				 }
+			} else {
+				System.out.println ("\nO código digitado não corresponde à um produto!");
 			}
-	}	
+			
+			System.out.println("\nDeseja continuar comprando? Sim / Não");
+			continuar = read.next();
+			
+			// Alterar o valor da variável continua de verdadeiro para falso, caso o usuário decida não continuar comprando
+			// fazendo assim que o loop do carrinho se quebre
+			continua = (continuar.toUpperCase().charAt(0) == 'N') ? false : true;
+			}	
+		System.out.println ("\nVocê finalizou suas compras!\n");
+		System.out.println("Seu carrinho:\n\n");
+		
+		// Listar as compras no carrinho
+		for (x = 0; x <10; x ++) {
+			if (compras [x]!= 0)
+			{
+				System.out.printf (compras [x] + " unidades de " + mercadoria [x] + "\n");
+				System.out.println ("\n ------------------ \n");
+			}
+		}
+		
+		// Calcular imposto e mostrar opções de pagamento
+		imposto = total * 0.09;
+		System.out.println ("O valor total de sua compra foi: R $ " + Math.round(total) + "e R $ " + Math.round(imposto) + "de impostos\n");
+		System.out.println ("Opções de pagamento:");
+		System.out.println ("\n1 - Á vista em dinheiro ou cheque (20% de desconto)");
+		System.out.println ("\n2 - A vista no cartão de crédito (15% de desconto)");
+		System.out.println ("\n3 - Em duas vezes (sem desconto)");
+		System.out.println ("\n4 - 3x no cartão (10% de juros)\n");
+		
+		do {
+			System.out.println("Digite a forma de pagamento");
+			pagamento = read.next().charAt(0);
+			if (pagamento == '1') {
+				total = total - (total * 0.2);
+			} else if (pagamento == '2') {
+				total = total - (total * 0.15);
+			} else if (pagamento == '3') {
+				continue;
+			} else if (pagamento == '4') {
+				total = total + (total *0.1);
+			} else {
+				System.out.println("Escolha uma forma de pagamento válida");
+			}
+		} while (pagamento != '1' && pagamento != '2' && pagamento != '3' && pagamento != '4');
+			
+		
+		
+		System.out.println("---------------------------------------");
+		System.out.println("\nMIIJ Games - 143.944.583/0001-52\n");
+		System.out.println("---------------------------------------");
+		System.out.println("Comprador " + comprador[0] + " - CPF: " + comprador[1]+"\n");
+		System.out.println("><><><><><><><><><><><><><><><><><><><><");
+		System.out.println("Pedido \t Qtd\tProduto\tValor ");
+		System.out.println("______________________________________");
+		for (int i = 0; i < 10; i++) {
+						if (compras[i] != 0) {
+								System.out.println((numeroNota)+"-\t"+compras[i] + "\t" + mercadoria[i] + "\t R$ " + preco[i] + "\n");
+								numeroNota++;
+			}
+						
+		}
+		System.out.println("><><><><><><><><><><><><><><><><><><><><\n");
+		System.out.println("Imposto de ICMS R$ " + Math.round(imposto) + "\n");
+		System.out.println("------------------------------------\n");
+		System.out.println("Total da nota: R$ " + Math.round((total + imposto))+ "\n");
+		System.out.println("------------------------------------\n");
+		
+		if (pagamento == '3') {
+			parcelas = total / 2;
+			System.out.println("Pagar em 2x de R$ " + Math.round(parcelas) + "\n");
+		} else if (pagamento == '4') {
+			parcelas = total / 3;
+			System.out.println("Pagar em 3x de R$ " + Math.round(parcelas) + "\n");
+		}
+		
+		System.out.println("Deseja comprar mais? Sim / Não");
+		continuar2 = read.next();
+		continua2 = (continuar2.toUpperCase().charAt(0) == 'N') ? false : true;
+		
+		}
+	}
 }

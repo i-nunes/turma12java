@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import oop.DesafioBanco.User;
 
 public class desafioEmGrupo02 {
 
@@ -7,14 +8,14 @@ public class desafioEmGrupo02 {
 	
 	
 	public static void main(String[] args) {
-		String nConta, nome, nCpf, nCnpj, dataAniversario, Limite;
+		String nConta, nome, nCpf, nCnpj = "", dataAniversario, Limite;
 		//String usuario[] = new String[5]; 
 		double valor = 0, saldo = 0, qntd, valorRetirada, 
 				valorLimite = 1000.00, emprestimo, totalemprestimo = 100.0;
 		char opcao, tipoConta, continuar, confirma;
 		int MOVDIA = 10, numeroTalao=1, qntTalao=0;
 		boolean continua = true;		
-		
+						
 		System.out.print("Digite seu nome: ");
 		nome = read.nextLine();
 		System.out.print("Digite o data do seu aniversário: ");
@@ -117,6 +118,11 @@ public class desafioEmGrupo02 {
 						break;
 					case '4':
 						// função conta empresarial
+						if (nCnpj.equals("")) {
+							System.out.println();
+							System.out.print("Digite seu CNPJ: ");
+							nCnpj = read.next();
+						}
 						System.out.println("Desejar fazer um empréstimo? Sim/Não");
 						confirma = read.next().toUpperCase().charAt(0);
 						if (confirma == 'S') {
