@@ -1,4 +1,4 @@
-package Lista01POO.classes;
+package listaPOO.classes;
 
 public class Aviao {
 	

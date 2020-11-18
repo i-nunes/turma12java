@@ -2,9 +2,9 @@ package Lista01POO;
 
 import java.util.Scanner;
 
-import Lista01POO.classes.Aviao;
-import Lista01POO.classes.Cliente;
-import Lista01POO.classes.Produto;
+import listaPOO.classes.Aviao;
+import listaPOO.classes.Cliente;
+import listaPOO.classes.Produto;
 
 public class rodar {
 
